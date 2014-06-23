@@ -1,7 +1,7 @@
 /*
    qgram wildcard index
 */
-package main
+package kstar
 
 import (
    "fmt"
@@ -45,7 +45,7 @@ func NewIndex(sequence []byte) *Index {
    return idx
 }
 
-func (idx Index) addSNP(sequence []byte, snp []string, pos int) {
+func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
    fmt.Println("addSNP")
 
    //fmt.Println(len(snp))
@@ -94,12 +94,3 @@ func (idx Index) addSNP(sequence []byte, snp []string, pos int) {
    }
 }
 
-func main() {
-   sequence := "CAAACAAAGCAATTGCAT"
-   i := NewIndex([]byte(sequence))
-      
-   snp:= []string{"G", "GCT"}
-   i.addSNP([]byte(sequence), snp, 4)
-
-   fmt.Println(i)
-}
