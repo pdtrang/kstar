@@ -9,12 +9,12 @@ import (
 
 func main() {
 	var genome_file = flag.String("g", "", "reference genome file")
-    flag.Parse()
+    	flag.Parse()
 
-    sequence := string(readfile.ReadFASTA(*genome_file))
+    	sequence := string(readfile.ReadFASTA(*genome_file))
     
-    //fmt.Println(sequence)
-    //fmt.Println(len(sequence))
+    	//fmt.Println(sequence)
+    	//fmt.Println(len(sequence))
    
 	var i kstar.Index
    	i = *kstar.NewIndex([]byte(sequence))
