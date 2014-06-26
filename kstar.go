@@ -58,18 +58,26 @@ func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
 
    for m := 0; m<len(snp); m++ {
       s_pos := pos - (K-snp_len[m])
+      if s_pos < 0 {
+         s_pos = 0
+      }
       for i := s_pos; i <= pos; i++ {
-        seq := ""
+         if (i < (len(sequence)-K+1)){
+         seq := ""
          for j := 0; j <= (K-snp_len[m]); j++ {
+            
             if i+j == pos{
+               //fmt.Println("i ", i, " + j ", j, " = pos ", pos)
                seq = seq + snp[m]
             }else{
-               seq = seq + string(sequence[i+j])   
+                  seq = seq + string(sequence[i+j])   
+                  //fmt.Println("i ", i, " j ", j, " pos ", pos)
             }
            
-            
-        }
-        fmt.Println(seq)
+         }   
+         //fmt.Println(seq)
+        
+        
 
         repr := 0
          acgt := true
@@ -88,7 +96,7 @@ func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
             idx.Qgram[repr] = append(idx.Qgram[repr], i)
             fmt.Printf("%s=%d.  Store %d at location %d\n", seq[0:K], repr, i, repr)
          }
-        
+        }
       }
       fmt.Println()
    }
