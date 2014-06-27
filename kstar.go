@@ -46,9 +46,6 @@ func NewIndex(sequence []byte) *Index {
 }
 
 func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
-   fmt.Println("addSNP")
-
-   //fmt.Println(len(snp))
    snp_len := make([]int, len(snp))
 
    for i := 0; i < len(snp); i++ {
