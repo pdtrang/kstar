@@ -9,8 +9,6 @@ import (
     "kstar"
 )
 
-
-
 func main () {
     var genome_file = flag.String("g", "", "reference genome file")
     var snp_file = flag.String("s", "", "snp profile file")
@@ -44,6 +42,7 @@ func main () {
     var i kstar.Index
    	i = *kstar.NewIndex([]byte(sequence))
 
+    fmt.Println("\naddSNP")
    	for j := 0; j < len(snp_f); j++ {
    		i.AddSNP([]byte(sequence), snp_a[j], pos[j])	
    	}
