@@ -4,7 +4,7 @@ import (
     "fmt"
     "flag"
     "readfile"
-    "kstar"
+    "github.com/pdtrang/kstar-Index"
 )
 
 func main () {
