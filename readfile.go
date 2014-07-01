@@ -5,7 +5,10 @@ import (
     "fmt"
     "bufio"
     "bytes"
-    "log"
+    //"log"
+    "strings"
+    "strconv"
+    "sort"
 )
 
 type SNP struct{
