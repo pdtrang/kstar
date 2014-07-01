@@ -12,8 +12,8 @@ func main () {
     var snp_file = flag.String("s", "", "snp profile file")
     flag.Parse()
 
-    sequence := readfile.ReadFASTA(*genome_file)   
-    dbsnp := readfile.ReadVCF(*snp_file)
+    sequence := kstar.ReadFASTA(*genome_file)   
+    dbsnp := kstar.ReadVCF(*snp_file)
     
     fmt.Println(string(sequence))
     fmt.Println(len(sequence))
