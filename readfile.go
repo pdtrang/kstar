@@ -1,4 +1,4 @@
-package readfile
+package kstar
 
 import (
      "os"
