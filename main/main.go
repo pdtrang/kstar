@@ -21,10 +21,10 @@ func main () {
     var i kstar.Index
    	i = *kstar.NewIndex([]byte(sequence))
 
-   	for j := range dbsnp {
+   	/*for j := range dbsnp {
         snp := dbsnp[j].GetString()
     	i.AddSNP([]byte(sequence), snp[1:], j)	
-   	}
+   	}*/
    	
     fmt.Println(i)
 }
