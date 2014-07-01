@@ -3,7 +3,7 @@ package main
 import (
     "fmt"
     "flag"
-    "readfile"
+    //"readfile"
     "github.com/pdtrang/kstar"
 )
 
