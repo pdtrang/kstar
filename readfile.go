@@ -34,12 +34,23 @@ func readLines(path string) ([]string, error) {
   return lines, scanner.Err()
 }
 
+/* Read VCF file (not real) */
 /*
 func ReadVCF(vcf_file string) []string{
     lines, err := readLines(vcf_file)
     if err != nil {
         log.Fatalf("readLines: %s", err)
     }
+    //for i, line := range lines {
+    //    fmt.Println(i, line)
+    //}
+
+    //fmt.Println("read VCF")
+    //fmt.Println(lines)
+    //for i := 0; i < len(lines); i++ {
+    //    fmt.Println(lines[i])
+    //}
+
     
     return lines
 }*/
