@@ -6,6 +6,8 @@ package kstar
 import (
    "fmt"
    "math"
+   "os"
+   "bufio"
 )
 
 var K = 3
@@ -35,7 +37,16 @@ func (idx Index) acgt(i int, K int, sequence []byte) (int, bool){
    return repr, acgt
 }
 
-func NewIndex(sequence []byte) *Index {
+func NewIndex(sequence []byte, path string) *Index {
+
+   file, err := os.Create(path)
+   if err != nil {
+      fmt.Println("error")
+   }
+   defer file.Close()
+
+   w := bufio.NewWriter(file)
+
    idx := new(Index)
    idx.Q = K
    idx.N = len(sequence)
@@ -46,9 +57,13 @@ func NewIndex(sequence []byte) *Index {
 
       if a {
          idx.Qgram[r] = append(idx.Qgram[r], i)
-         fmt.Printf("%s=%d.  Store %d at location %d\n", string(sequence[i:i+K]), r, i, r)
+         //fmt.Printf("%s=%d.  Store %d at location %d\n", string(sequence[i:i+K]), r, i, r)
+         fmt.Fprintln(w, r)
       }
    }
+   
+   w.Flush()
+   
    return idx
 }
 
