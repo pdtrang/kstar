@@ -19,6 +19,10 @@ type Index struct {
    SNP []bool
 }
 
+func (i Index) GetQgram() [][]int {
+    return i.Qgram
+}
+
 func (idx Index) acgt(i int, K int, sequence []byte) (int, bool){
    repr := 0
       acgt := true
