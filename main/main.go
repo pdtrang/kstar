@@ -10,6 +10,7 @@ import (
 func main () {
     var genome_file = flag.String("g", "", "reference genome file")
     var snp_file = flag.String("s", "", "snp profile file")
+    var output_index = flag.String("i", "", "output index file")
     flag.Parse()
 
     sequence := kstar.ReadFASTA(*genome_file)   
@@ -19,12 +20,12 @@ func main () {
     fmt.Println(len(sequence))
     
     var i kstar.Index
-   	i = *kstar.NewIndex([]byte(sequence))
+   	i = *kstar.NewIndex([]byte(sequence), *output_index)
 
    	/*for j := range dbsnp {
         snp := dbsnp[j].GetString()
     	i.AddSNP([]byte(sequence), snp[1:], j)	
    	}*/
    	
-    fmt.Println(i)
+    fmt.Println(len(i.GetQgram()))
 }
