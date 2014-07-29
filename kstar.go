@@ -1,16 +1,18 @@
-/*
-   qgram wildcard index
+/*                                                                                                                                                                                                                                           
+   qgram wildcard index                                                                                                                                                                                                                      
 */
 package kstar
 
 import (
    "fmt"
    "math"
-   "os"
-   "bufio"
+//"runtime"                                                                                                                                                                                                                                  
+//"log"                                                                                                                                                                                                                                      
+//      "os"                                                                                                                                                                                                                                 
+//      "bufio"                                                                                                                                                                                                                              
 )
 
-var K = 3
+//var K = 3                                                                                                                                                                                                                                  
 
 type Index struct {
    Q int
@@ -19,8 +21,8 @@ type Index struct {
    SNP []bool
 }
 
-func (i Index) GetQgram() [][]int {
-    return i.Qgram
+func (i Index) GetQgram() [][]int{
+        return i.Qgram
 }
 
 func (idx Index) acgt(i int, K int, sequence []byte) (int, bool){
@@ -33,23 +35,25 @@ func (idx Index) acgt(i int, K int, sequence []byte) (int, bool){
             case 'G': repr = 4*repr + 2
             case 'T': repr = 4*repr + 3
             default:
-               // we skip any qgram that contains a non-standard base, e.g. N
+               // we skip any qgram that contains a non-standard base, e.g. N                                                                                                                                                                
                acgt = false
          }
       }
-      
+
    return repr, acgt
 }
 
-func NewIndex(sequence []byte, path string) *Index {
-
-   file, err := os.Create(path)
-   if err != nil {
-      fmt.Println("error")
-   }
-   defer file.Close()
-
-   w := bufio.NewWriter(file)
+func NewIndex(sequence []byte, K int) *Index {
+//      memstats := new(runtime.MemStats)                                                                                                                                                                                                    
+//      runtime.ReadMemStats(memstats)                                                                                                                                                                                                       
+//      log.Printf("\t start indexing: memstats: \t%d\t%d\t%d\t%d\t%d", memstats.Alloc, memstats.TotalAlloc, memstats.Sys, memstats.HeapAlloc, memstats.HeapSys)                                                                             
+/*      file, err := os.Create(path)                                                                                                                                                                                                         
+        if err != nil {                                                                                                                                                                                                                      
+                fmt.Println("error")                                                                                                                                                                                                         
+        }                                                                                                                                                                                                                                    
+        defer file.Close()                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                             
+        w := bufio.NewWriter(file)*/
 
    idx := new(Index)
    idx.Q = K
@@ -61,22 +65,23 @@ func NewIndex(sequence []byte, path string) *Index {
 
       if a {
          idx.Qgram[r] = append(idx.Qgram[r], i)
-         //fmt.Printf("%s=%d.  Store %d at location %d\n", string(sequence[i:i+K]), r, i, r)
-         fmt.Fprintln(w, r)
+         //fmt.Printf("%d\n", r)                                                                                                                                                                                                             
+//      fmt.Fprintln(w, r)                                                                                                                                                                                                                   
       }
    }
-   
-   w.Flush()
-   
+
+//w.Flush()                                                                                                                                                                                                                                  
+//      runtime.ReadMemStats(memstats)                                                                                                                                                                                                       
+//        log.Printf("\t end indexing: memstats: \t%d\t%d\t%d\t%d\t%d", memstats.Alloc, memstats.TotalAlloc, memstats.Sys, memstats.HeapAlloc, memstats.HeapSys)                                                                             
    return idx
 }
 
-func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
+func (idx Index) AddSNP(sequence []byte, snp []string, pos int, K int) {
    snp_len := make([]int, len(snp))
 
    for i := 0; i < len(snp); i++ {
       snp_len[i] = len(snp[i])
-      //fmt.Println(snp_len[i])
+      //fmt.Println(snp_len[i])                                                                                                                                                                                                              
    }
 
    for m := 0; m<len(snp); m++ {
@@ -87,22 +92,22 @@ func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
       for i := s_pos; i <= pos; i++ {
          if (i < (len(sequence)-K+1)){
          seq := ""
-         fmt.Println("SNP pos = ", pos)
+         //fmt.Println("SNP pos = ", pos)                                                                                                                                                                                                    
          for j := 0; j <= (K-snp_len[m]); j++ {
-            
+
             if i+j == pos{
-               //fmt.Println("i ", i, " + j ", j, " = pos ", pos)
+               //fmt.Println("i ", i, " + j ", j, " = pos ", pos)                                                                                                                                                                            
                seq = seq + snp[m]
             }else{
-                  seq = seq + string(sequence[i+j])   
-                  //fmt.Println("i ", i, " j ", j, " pos ", pos)
+                  seq = seq + string(sequence[i+j])
+                  //fmt.Println("i ", i, " j ", j, " pos ", pos)                                                                                                                                                                             
             }
-           
-         }   
-         fmt.Println(seq)
-      
+
+         }
+         //fmt.Println(seq)                                                                                                                                                                                                                  
+
          r, a := idx.acgt(0, K, []byte(seq))
-         
+
          if a {
             idx.Qgram[r] = append(idx.Qgram[r], i)
             fmt.Printf("%s=%d.  Store %d at location %d\n", seq[0:K], r, i, r)
@@ -112,4 +117,3 @@ func (idx Index) AddSNP(sequence []byte, snp []string, pos int) {
       fmt.Println()
    }
 }
-
