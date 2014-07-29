@@ -16,7 +16,7 @@ Index_2
 
 // print all the non-empty location in the Index, no empty line<br>
 <span>>preffix from fasta file, contains infomation of the sequence and value of K<br>
-location  position1 position2 ... positionk</span>
+location&nbsp;&nbsp;&nbsp;&nbsp;position1 position2 ... positionk</span>
 
 
 
