@@ -9,8 +9,8 @@ Output Index
 Index_1 
 
 //print all the locations in the Index, may have empty line
->preffix from fasta file, contains infomation of the sequence and value of K<br>
-position1 position2 ... positionk
+<span>>preffix from fasta file, contains infomation of the sequence and value of K<br>
+position1 position2 ... positionk</span>
 
 Index_2
 
