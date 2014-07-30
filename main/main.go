@@ -122,4 +122,11 @@ func main () {
     log.Printf("end main: memstats:\t%d\t%d\t%d\t%d\t%d", memstats.Alloc,   memstats.TotalAlloc, memstats.Sys, memstats.HeapAlloc, memstats.HeapSys)
     fmt.Fprintln(wr, "end main: memstats: Alloc ", memstats.Alloc, "\tTotalAlloc ", memstats.TotalAlloc, "\tSys ", memstats.Sys, "\tHeapAlloc ", memstats.HeapAlloc, "\tHeapSys ", memstats.HeapSys)
     wr.Flush()
+    
+    query := "CAATCTGCA"
+    //fmt.Println(query)
+      
+    pos := kstar.FindQuery(query, i_qgram, K)
+
+    fmt.Println("Position of Read: ", pos)
 }
