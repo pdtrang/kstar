@@ -116,10 +116,10 @@ func main(){
 	var k = 10
 
 	fmt.Println("Read FASTA")
-  sequence := kstar.ReadFASTA(*genome_file)
+  	sequence := kstar.ReadFASTA(*genome_file)
 
-  //fmt.Println(string(sequence))
-  fmt.Println(len(sequence))
+  	//fmt.Println(string(sequence))
+  	fmt.Println(len(sequence))
     
 	idx = *fmi.New(*genome_file)
 	idx.Save(*index_file)
