@@ -94,10 +94,10 @@ func count_occ(sequence []byte, k int) {
 	p = count(sequence, k, p, 0)
 	
 	fmt.Println("20-mer")
-	p = histogram(sequence, 2*k, p, 1)
+	p = count(sequence, 2*k, p, 1)
 	
 	fmt.Println("40-mer")
-	p = histogram(sequence, 4*k, p, 1)
+	p = count(sequence, 4*k, p, 1)
 
 	fmt.Println("Finish counting")
 
