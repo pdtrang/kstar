@@ -1,4 +1,4 @@
-package countocc
+package main
 
 import (
 	"fmt"
