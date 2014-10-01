@@ -33,7 +33,6 @@ func update_count(k int){
 			if (k == 40){
 				count_40 = count_40 + 1
 			}
-			
 		}
 	}
 }
@@ -52,7 +51,6 @@ func count(sequence []byte, k int, pos []int, n int) ([]int) {
 				if (len(a)==1){
 					a[0] = a[0]+k-1
 					update_count(k)
-
 				}else{
 					//occ > 1
 					for j := 0; j < len(a); j++ {
@@ -72,7 +70,6 @@ func count(sequence []byte, k int, pos []int, n int) ([]int) {
 				if (len(a)==1){
 					a[0] = a[0]+k-1
 					update_count(k)					
-					
 				}else{
 					//occ > 1
 					for j := 0; j < len(a); j++ {
