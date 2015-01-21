@@ -1,6 +1,8 @@
 kstar
 ===========
+Goal: Build index of a string using substring with length k.
 
+How to run:
 go run main.go -g genome.fasta -i genome_1.index -o genome_2.index -l log-genome.txt
 
 
